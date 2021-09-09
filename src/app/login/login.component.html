@@ -1,0 +1,93 @@
+<div class="col-sm-8 offset-sm-3 mt-5 bg-light pb-5 rounded mb-5">
+    <div class="col-sm-12 p-5 ">
+        <div class="col-sm-7 offset-sm-3">
+    <button (click)="login_form()" class="button-transparent border-0" >Log In</button>
+    <button (click)="signup_form()" class="button-transparent border-0">Register</button>
+</div> 
+</div>
+<form [formGroup]="loginform" (ngSubmit)="sub()"  *ngIf="logsign">
+    <div class="col-sm-10 offset-sm-1">
+        <div class="mb-2">
+            <label>Email/Mobile Number</label>
+        </div>
+        <div class="mb-2">
+            <input type="email" placeholder="dummy@email.com" class="form-control" formControlName="email">
+            <span class="text-danger" *ngIf="loginform.controls['email'].touched && loginform.controls['email'].invalid">email is not in proper format</span>
+        </div>
+        <div class="mb-2">
+            <label>Password</label>
+        </div>
+        <div class="mb-1">
+            <input type="password" placeholder="password" class="form-control" formControlName="pwd">
+            <span class="text-danger" *ngIf="loginform.controls['pwd'].touched && loginform.controls['pwd'].invalid">please type valid password</span>
+        </div>
+        <div class="col-sm-5 offset-sm-7 mb-5">
+           <small> <a>Forget Password</a></small>
+        </div>
+        <span *ngIf="msg.length>0" class="bg-warning">{{msg}}</span>
+        <div class="mt-5 col-sm-6 mb-5 offset-sm-3">
+            <button type="submit" class="bg-secondary form-control" [disabled]="loginform.invalid">LOGIN</button>
+             <small>Not a member yet? </small><a (click)="signup_form()">Register</a> 
+         </div>
+         
+          
+    </div>
+</form>
+
+<form [formGroup]="signupform" (ngSubmit)="suber()" *ngIf="!logsign" >
+    <div class="col-sm-10 offset-sm-1">
+        <div class="mb-3">
+            <label>Full Name</label>
+    
+            <input type="text" class="form-control" formControlName="fullname" placeholder="fullname">
+            <span class="text-danger" *ngIf="signupform.controls['fullname'].touched && signupform.controls['fullname'].invalid">fullname is nott in proper format</span>
+        </div>
+        
+        <div class="mb-3">
+            <label>Email</label>
+     
+            <input type="email" class="form-control" formControlName="email" placeholder="email">
+        <span class="text-danger" *ngIf="signupform.controls['email'].touched && signupform.controls['email'].invalid">email is nott in proper format</span>
+    </div>
+    
+    
+    <div class="mb-3">
+        <label>Mobile Number</label>
+     
+        <input type="number" class="form-control" formControlName="contact" placeholder="contact">
+        <span class="text-danger" *ngIf="signupform.controls['contact'].touched && signupform.controls['contact'].invalid">contact no. should be 10 digits</span>
+    </div>
+     
+    <div class="mb-3">
+        <label>Gender</label>
+    
+        <input type="text" class="form-control" formControlName="gender" placeholder="gender">
+        <span class="text-danger" *ngIf="signupform.controls['gender'].touched && signupform.controls['gender'].invalid">gender is nott in proper format</span>
+    </div>
+
+
+
+    <div class="mb-3">
+        <label>Password</label>
+    
+        <input type="password"  class="form-control" formControlName="pwd" placeholder="password">
+            
+        <span class="text-danger" *ngIf="signupform.controls['pwd'].touched && signupform.controls['pwd'].invalid">required 8 characters</span>
+    </div>
+    <div class="mb-3">
+        <label>Confirm-password</label>
+       
+        <input type="password"  class="form-control" formControlName="cnfmpwd" placeholder="confirm password">
+            
+        <span class="text-danger" *ngIf="signupform.controls['cnfmpwd'].touched && signupform.controls['cnfmpwd'].invalid">required 8 characters</span>
+    </div>
+    
+<div class="col-sm-6 offset-sm-3">
+  <button class="btn-secondary form-control" [disabled]="signupform.invalid">Register</button>
+<small>already a member </small> <a (click)="login_form()">login</a>
+</div>
+</div>  
+</form>
+
+
+</div>
